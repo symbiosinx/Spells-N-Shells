@@ -6,10 +6,13 @@ public class Movement : MonoBehaviour {
 
 	public float speed = 5f;
 
-	Vector3 direction = Vector3.zero;
+	Vector2 direction = Vector2.zero;
+
+	Rigidbody2D rb2d;
 
 	void Start() {
 
+		rb2d = this.GetComponent<Rigidbody2D>();
 	}
 
 	void Update() {
@@ -26,6 +29,10 @@ public class Movement : MonoBehaviour {
 			direction.x = 1;
 		} else { direction.x = 0; }
 
-		transform.position += direction * speed * Time.deltaTime;
+		//rb2d.AddForce(direction * speed * Time.deltaTime, ForceMode2D.Impulse);
+
+		//this.transform.position += (Vector3)direction * speed * Time.deltaTime;
+
+		rb2d.velocity = direction * speed * Time.deltaTime;
 	}
 }
