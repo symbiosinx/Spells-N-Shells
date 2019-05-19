@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
 	Vector3 direction = Vector3.up;
-	float speed = 0.04f;
+	float speed = 10f;
 
 
 	void Start() {
@@ -13,8 +13,6 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void Update() {
-
-		this.transform.position += direction * speed;
 
 	}
 
@@ -27,5 +25,6 @@ public class Bullet : MonoBehaviour {
 	public void Spawn(float angle) {
 		angle *= Mathf.Deg2Rad;
 		direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+		this.GetComponent<Rigidbody2D>().velocity = direction * speed;
 	}
 }
