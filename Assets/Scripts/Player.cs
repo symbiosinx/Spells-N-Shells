@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public GameObject bullet;
+    public GameObject crosshair;
 	float playerAngle;
+    Vector3 cursorPos;
 
 	float Angle(Vector3 u, Vector3 v) {
 		//return Vector3.Angle(Vector3.right, v - u) * ((v.y < u.y) ? -1f : 1f);
@@ -13,22 +15,25 @@ public class Player : MonoBehaviour {
 	}
 
 	void Start() {
-
+        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 	}
 
 	void Update() {
 
-		//this.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //this.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		playerAngle = Angle(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		Debug.Log(playerAngle);
+        playerAngle = Angle(transform.position, cursorPos);
 
 		if (-90f < playerAngle && playerAngle < 90f) {
 			this.transform.localScale = new Vector3(-1, 1, 1);
 		} else {
 			this.transform.localScale = Vector3.one;
 		}
+
+        crosshair.transform.position = cursorPos;
 
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
 
@@ -37,15 +42,4 @@ public class Player : MonoBehaviour {
 
 		}
 	}
-
-	/*float PPU = 16;
-
-	void LateUpdate() {
-		Vector3 position = transform.localPosition;
-
-		position.x = (Mathf.Round(transform.position.x * PPU) / PPU) - transform.position.x;
-		position.y = (Mathf.Round(transform.position.y * PPU) / PPU) - transform.position.y;
-
-		transform.localPosition = position;
-	}*/
 }
