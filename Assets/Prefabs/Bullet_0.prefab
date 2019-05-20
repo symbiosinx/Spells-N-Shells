@@ -51,8 +51,8 @@ SpriteRenderer:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
-	firstSubMesh: 0
-	subMeshCount: 0
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef39985eb0ee07349a10539e00727cc0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7016711577783883019
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,13 +141,13 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-	border: {x: 0, y: 0, z: 0, w: 0}
-	pivot: {x: 0.5, y: 0.5}
-	oldSize: {x: 0.25, y: 0.25}
-	newSize: {x: 0.04, y: 0.04}
-	adaptiveTilingThreshold: 0.5
-	drawMode: 0
-	adaptiveTiling: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.25, y: 0.25}
+    newSize: {x: 0.04, y: 0.04}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.04}
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebf9363126d842b45b9b222e40ac8026, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &6138949650811448193
 Rigidbody2D:
   serializedVersion: 4
