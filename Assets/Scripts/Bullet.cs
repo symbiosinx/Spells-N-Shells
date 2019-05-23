@@ -22,9 +22,7 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	public void Spawn(float angle) {
-		angle *= Mathf.Deg2Rad;
-		direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
-		this.GetComponent<Rigidbody2D>().velocity = direction * speed;
+	public void Spawn(Vector3 direction) {
+		this.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
 	}
 }

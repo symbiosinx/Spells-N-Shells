@@ -6,11 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     public float stamina = 10f;
-    public float maxStamina = 10f;
-    public float speed = 200f;
-
-    private float staminaRegenTimer = 0f;
-    private const float staminaTimeToRegen = 3.0f;
+    public float speed = 10f;
 
     Vector2 direction = Vector2.zero;
 
@@ -45,42 +41,6 @@ public class Movement : MonoBehaviour
         }
         else { direction.x = 0; }
 
-
-        //Dash
-        if (stamina > 0)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                speed  =  500f;
-                stamina = stamina - 5f;
-                staminaRegenTimer = 0.0f;
-            } else {
-                speed = 200f;
-            }
-        }
-
-
-        if (stamina < maxStamina)
-        {
-            if (staminaRegenTimer >= staminaTimeToRegen)
-            {
-                stamina = Mathf.Clamp(stamina + (1 * Time.deltaTime), 0.0f, maxStamina);
-
-
-            }
-            else
-                staminaRegenTimer += Time.deltaTime;
-        }
-
-        if (stamina < 0)
-        {
-            speed = 100f;
-        }
-
-        //rb2d.AddForce(direction * speed * Time.deltaTime, ForceMode2D.Impulse);
-
-        //this.transform.position += (Vector3)direction * speed * Time.deltaTime;
-
-        rb2d.velocity = direction * speed * Time.deltaTime;
+        rb2d.velocity = direction * speed;
     }
 }

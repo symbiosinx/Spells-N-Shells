@@ -5,26 +5,31 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public GameObject bullet;
-	float playerAngle;
+	Vector3 mouseDirection;
+	float mouseDistance;
+
+	public Transform crosshair;
 
 	float Angle(Vector3 u, Vector3 v) {
 		//return Vector3.Angle(Vector3.right, v - u) * ((v.y < u.y) ? -1f : 1f);
-		return Mathf.Rad2Deg * Mathf.Atan2(v.y-u.y, v.x-u.x);
+		return Mathf.Atan2(v.y-u.y, v.x-u.x);
 	}
 
 	void Start() {
-
+		Cursor.visible = false;
 	}
 
 	void Update() {
 
-		//this.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		float angle = Angle(transform.position, mousePos);
+		mouseDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+		mouseDistance = Vector3.Distance(transform.position, mousePos);
 
-		playerAngle = Angle(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		Camera.main.transform.parent.position = this.transform.position + -Vector3.forward + mouseDirection * mouseDistance*0.15f;
+		crosshair.position = mousePos;
 
-		Debug.Log(playerAngle);
-
-		if (-90f < playerAngle && playerAngle < 90f) {
+		if (-90f < angle && angle < 90f) {
 			this.transform.localScale = new Vector3(-1, 1, 1);
 		} else {
 			this.transform.localScale = Vector3.one;
@@ -33,7 +38,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
 
 			GameObject bulletClone = Instantiate(bullet, transform.position, Quaternion.identity);
-			bulletClone.GetComponent<Bullet>().Spawn(playerAngle);
+			bulletClone.GetComponent<Bullet>().Spawn(mouseDirection);
 
 		}
 	}
