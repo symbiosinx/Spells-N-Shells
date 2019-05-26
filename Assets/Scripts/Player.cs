@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public GameObject bullet;
+	public CameraShake cameraShake;
 	Vector3 mouseDirection;
 	float mouseDistance;
 
@@ -26,8 +27,9 @@ public class Player : MonoBehaviour {
 		mouseDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
 		mouseDistance = Vector3.Distance(transform.position, mousePos);
 
-		Camera.main.transform.parent.position = this.transform.position + -Vector3.forward + mouseDirection * mouseDistance*0.15f;
+		Camera.main.transform.parent.parent.position = this.transform.position + -Vector3.forward + mouseDirection * mouseDistance*0.15f;
 		crosshair.position = mousePos;
+
 
 		if (-90f < angle && angle < 90f) {
 			this.transform.localScale = new Vector3(-1, 1, 1);
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour {
 
 			GameObject bulletClone = Instantiate(bullet, transform.position, Quaternion.identity);
 			bulletClone.GetComponent<Bullet>().Spawn(mouseDirection);
+			cameraShake.Shoot(mouseDirection);
 
 		}
 	}
