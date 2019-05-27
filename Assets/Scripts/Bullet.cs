@@ -22,7 +22,8 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	public void Spawn(Vector3 direction) {
-		this.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
+	public void Spawn(float angle) {
+
+		this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized * speed;
 	}
 }
