@@ -10,11 +10,17 @@ public class Player : MonoBehaviour {
 	Vector3 mouseDirection;
 	float mouseDistance;
 
+	public float health = 100f;
+	public float maxHealth = 100f;
+	public float stamina = 100f;
+	public float maxStamina = 100f;
+	public float speed = 5f;
+
 	public Transform crosshair;
 
 	float Angle(Vector3 u, Vector3 v) {
 		//return Vector3.Angle(Vector3.right, v - u) * ((v.y < u.y) ? -1f : 1f);
-		return Mathf.Atan2(v.y-u.y, v.x-u.x);
+		return Mathf.Atan2(v.y - u.y, v.x - u.x);
 	}
 
 	Vector2 Ang2Vec(float angle) {
@@ -31,11 +37,11 @@ public class Player : MonoBehaviour {
 		float angle = Angle(transform.position, mousePos);
 		mouseDirection = Ang2Vec(angle);
 		mouseDistance = Vector3.Distance(transform.position, mousePos);
-		Camera.main.transform.parent.parent.position = this.transform.position + -Vector3.forward + mouseDirection * mouseDistance*0.15f;
+		Camera.main.transform.parent.parent.position = this.transform.position + -Vector3.forward + mouseDirection * mouseDistance * 0.15f;
 		crosshair.position = mousePos;
 
 
-		if (-Mathf.PI*0.5f < angle && angle < Mathf.PI*0.5f) {
+		if (-Mathf.PI * 0.5f < angle && angle < Mathf.PI * 0.5f) {
 			this.transform.localScale = new Vector3(-1, 1, 1);
 		} else {
 			this.transform.localScale = Vector3.one;
@@ -48,9 +54,14 @@ public class Player : MonoBehaviour {
 			GameObject bulletClone = Instantiate(bullet, transform.position + mouseDirection * 0.3f, Quaternion.identity);
 			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.1f, 0.1f));
 			Instantiate(muzzleFlash, transform.position + mouseDirection * 0.3f + -Vector3.forward, Quaternion.identity);
-			cameraShake.Shoot(mouseDirection);
+			cameraShake.Shoot(Random.insideUnitCircle.normalized);
 
 		}
+	}
+
+	void TakeDamage(float damage) {
+		health -= damage;
+		health = Mathf.Clamp(health, 0f, maxHealth);
 	}
 
 	/*float PPU = 16;
