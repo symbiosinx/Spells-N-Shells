@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
 	Vector3 mouseDirection;
 	float mouseDistance;
 
+    public float health = 100f;
+
 	public Transform crosshair;
 
 	float Angle(Vector3 u, Vector3 v) {
@@ -52,6 +54,11 @@ public class Player : MonoBehaviour {
 
 		}
 	}
+
+    public void LoseHealth()
+    {
+        health = health - 10f;
+    }
 
 	/*float PPU = 16;
 
