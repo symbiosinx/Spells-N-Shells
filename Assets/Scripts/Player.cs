@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public GameObject bullet;
+	public GameObject bullet2;
+	public GameObject bullet3;
+	public GameObject smoke;
+
 	public GameObject muzzleFlash;
 	public CameraShake cameraShake;
 	Vector3 mouseDirection;
@@ -19,7 +23,6 @@ public class Player : MonoBehaviour {
 	public Transform crosshair;
 
 	float Angle(Vector3 u, Vector3 v) {
-		//return Vector3.Angle(Vector3.right, v - u) * ((v.y < u.y) ? -1f : 1f);
 		return Mathf.Atan2(v.y - u.y, v.x - u.x);
 	}
 
@@ -47,12 +50,19 @@ public class Player : MonoBehaviour {
 			this.transform.localScale = Vector3.one;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Mouse0)) {
-
-			//GetComponent<Rigidbody2D>().AddForce(-mouseDirection*20f, ForceMode2D.Force);
-			//GetComponent<Rigidbody2D>().velocity -= (Vector2)mouseDirection * 20f;
-			GameObject bulletClone = Instantiate(bullet, transform.position + mouseDirection * 0.3f, Quaternion.identity);
+		if (Input.GetKey(KeyCode.Mouse0)) {
+			GetComponent<Rigidbody2D>().velocity += (Vector2)(-mouseDirection * 10f);
+			GameObject bulletClone = Instantiate(bullet2, transform.position + mouseDirection * 0.3f, Quaternion.identity);
 			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.1f, 0.1f));
+			bulletClone.transform.localScale *= 0.75f;
+			bulletClone = Instantiate(bullet, transform.position + mouseDirection * 0.3f, Quaternion.identity);
+			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.3f, 0.3f));
+			bulletClone = Instantiate(bullet3, transform.position + mouseDirection * 0.3f, Quaternion.identity);
+			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.5f, 0.5f));
+
+			bulletClone = Instantiate(smoke, transform.position + mouseDirection * 0.2f, Quaternion.identity);
+			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.5f, 0.5f));
+
 			Instantiate(muzzleFlash, transform.position + mouseDirection * 0.3f + -Vector3.forward, Quaternion.identity);
 			cameraShake.Shoot(Random.insideUnitCircle.normalized);
 
@@ -64,14 +74,4 @@ public class Player : MonoBehaviour {
 		health = Mathf.Clamp(health, 0f, maxHealth);
 	}
 
-	/*float PPU = 16;
-
-	void LateUpdate() {
-		Vector3 position = transform.localPosition;
-
-		position.x = (Mathf.Round(transform.position.x * PPU) / PPU) - transform.position.x;
-		position.y = (Mathf.Round(transform.position.y * PPU) / PPU) - transform.position.y;
-
-		transform.localPosition = position;
-	}*/
 }

@@ -200,11 +200,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 33553656}
-  - component: {fileID: 33553654}
   - component: {fileID: 33553658}
-  - component: {fileID: 33553659}
   - component: {fileID: 33553657}
   - component: {fileID: 33553655}
+  - component: {fileID: 33553659}
+  - component: {fileID: 33553654}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -304,7 +304,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1ea9b7bd19700444792ce5e78e8f5478, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -347,7 +347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cf57bde9c60e54c88e017369442d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7016711577783883019, guid: 979d7c451cdf8824db812a42dd4cdf79, type: 3}
+  bullet: {fileID: 1590187463898111916, guid: a3467f7a84fd1ac43933814b9a84635a, type: 3}
+  bullet2: {fileID: 1590187463898111916, guid: d1529993261bde243af1a405ee0942cd, type: 3}
+  bullet3: {fileID: 1590187463898111916, guid: 5394593b5c145e74f8fa7181d4550087, type: 3}
+  smoke: {fileID: 1590187463898111916, guid: e5ffd0b366c8df04ea3bdeb4672a46a6, type: 3}
   muzzleFlash: {fileID: 7145381130922414689, guid: 3045be64637da944ca96f7c2476b6b72,
     type: 3}
   cameraShake: {fileID: 519420030}
@@ -1690,8 +1693,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 16
-  m_RefResolutionX: 640
-  m_RefResolutionY: 360
+  m_RefResolutionX: 480
+  m_RefResolutionY: 270
   m_UpscaleRT: 1
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -2969,7 +2972,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1191379670}
   - component: {fileID: 1191379669}
-  - component: {fileID: 1191379668}
   m_Layer: 0
   m_Name: hotdog
   m_TagString: Untagged
@@ -2977,19 +2979,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1191379668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191379667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11702cb6751b9ac498302d74194e4292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!212 &1191379669
 SpriteRenderer:
   m_ObjectHideFlags: 0

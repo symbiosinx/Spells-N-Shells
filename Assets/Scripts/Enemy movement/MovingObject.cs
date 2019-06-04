@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ public class MovingObject : MonoBehaviour
             StartCoroutine(SmoothMovement(end));
             return true;
         }
+		return false;
     }
 
     protected IEnumerator SmoothMovement(Vector3 end)
@@ -72,3 +74,4 @@ public class MovingObject : MonoBehaviour
 
 
 }
+*/
