@@ -45,23 +45,23 @@ public class Player : MonoBehaviour {
 
 
 		if (-Mathf.PI * 0.5f < angle && angle < Mathf.PI * 0.5f) {
-			this.transform.localScale = new Vector3(-1, 1, 1);
+			transform.localScale = new Vector3(-1, 1, 1);
 		} else {
-			this.transform.localScale = Vector3.one;
+			transform.localScale = Vector3.one;
 		}
 
 		if (Input.GetKey(KeyCode.Mouse0)) {
-			GetComponent<Rigidbody2D>().velocity += (Vector2)(-mouseDirection * 10f);
+			//GetComponent<Rigidbody2D>().velocity += (Vector2)(-mouseDirection * 4f);
 			GameObject bulletClone = Instantiate(bullet2, transform.position + mouseDirection * 0.3f, Quaternion.identity);
-			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.1f, 0.1f));
+			bulletClone.GetComponent<Flames>().Spawn(angle + Random.Range(-0.1f, 0.1f));
 			bulletClone.transform.localScale *= 0.75f;
 			bulletClone = Instantiate(bullet, transform.position + mouseDirection * 0.3f, Quaternion.identity);
-			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.3f, 0.3f));
+			bulletClone.GetComponent<Flames>().Spawn(angle + Random.Range(-0.3f, 0.3f));
 			bulletClone = Instantiate(bullet3, transform.position + mouseDirection * 0.3f, Quaternion.identity);
-			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.5f, 0.5f));
+			bulletClone.GetComponent<Flames>().Spawn(angle + Random.Range(-0.5f, 0.5f));
 
-			bulletClone = Instantiate(smoke, transform.position + mouseDirection * 0.2f, Quaternion.identity);
-			bulletClone.GetComponent<Bullet>().Spawn(angle + Random.Range(-0.5f, 0.5f));
+			//bulletClone = Instantiate(smoke, transform.position + mouseDirection * 0.2f, Quaternion.identity);
+			//bulletClone.GetComponent<Flames>().Spawn(angle + Random.Range(-0.5f, 0.5f));
 
 			Instantiate(muzzleFlash, transform.position + mouseDirection * 0.3f + -Vector3.forward, Quaternion.identity);
 			cameraShake.Shoot(Random.insideUnitCircle.normalized);
