@@ -51,7 +51,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKey(KeyCode.Mouse0)) {
-			//GetComponent<Rigidbody2D>().velocity += (Vector2)(-mouseDirection * 4f);
+			GetComponent<Rigidbody2D>().AddForce(-mouseDirection * 100f);
 			GameObject bulletClone = Instantiate(bullet2, transform.position + mouseDirection * 0.3f, Quaternion.identity);
 			bulletClone.GetComponent<Flames>().Spawn(angle + Random.Range(-0.1f, 0.1f));
 			bulletClone.transform.localScale *= 0.75f;
@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
 
 		}
 	}
+
 
 	void TakeDamage(float damage) {
 		health -= damage;
