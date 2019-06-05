@@ -12,7 +12,7 @@ public class Flames : MonoBehaviour {
 	float smokeSpawnTime = 0f;
 	Vector3 normalScale;
 
-	public GameObject smoke;
+	public GameObject smoke; 
 	public AnimationCurve sizeCurve;
 
 	void Start() {
@@ -21,7 +21,6 @@ public class Flames : MonoBehaviour {
 		transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
 		transform.localScale *= Random.Range(0.8f, 1.2f);
 		normalScale = transform.localScale;
-
 	}
 
 	void Update() {
@@ -44,8 +43,8 @@ public class Flames : MonoBehaviour {
 		}
 	}
 
-	public void Spawn(float angle) {
+	public void Spawn(Vector2 direction) {
 
-		GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized * speed;
+		GetComponent<Rigidbody2D>().velocity = direction * speed;
 	}
 }

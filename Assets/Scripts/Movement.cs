@@ -18,17 +18,13 @@ public class Movement : MonoBehaviour {
 	IEnumerator Roll() {
 		rb2d.velocity = direction * rollSpeed;
 		rolling = true;
-		for (int i = 0; i < 25; i++) {
-			yield return null;
-		}
+		yield return new WaitForSeconds(0.35f);
 		rolling = false;
 	}
 
 	IEnumerator StopRegen() {
-		for (int i = 0; i < 120; i++) {
-			regenStopped = true;
-			yield return null;
-		}
+		regenStopped = true;
+		yield return new WaitForSeconds(2f);
 		regenStopped = false;
 	}
 
