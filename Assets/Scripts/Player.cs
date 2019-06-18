@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
 	public Gun gun;
+	public Slider healthSlider;
+	public Slider staminaSlider;
 
 	public GameObject bullet;
 	public GameObject bullet2;
@@ -38,6 +41,9 @@ public class Player : MonoBehaviour {
 
 	void Update() {
 
+		healthSlider.value = health / maxHealth;
+		staminaSlider.value = stamina / maxStamina;
+
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		float angle = Angle(transform.position, mousePos);
 		mouseDirection = Ang2Vec(angle);
@@ -64,9 +70,12 @@ public class Player : MonoBehaviour {
 	}
 
 
-	void TakeDamage(float damage) {
+	public void Damage(float damage) {
 		health -= damage;
-		health = Mathf.Clamp(health, 0f, maxHealth);
+		if (health <= 0) {
+			Destroy(gameObject);
+		}
+		
 	}
 
 }

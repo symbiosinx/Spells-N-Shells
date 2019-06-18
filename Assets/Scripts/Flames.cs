@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Flames : MonoBehaviour {
 
+	public float damage = 1f;
+
+	Vector3 normalScale;
 	Vector3 direction = Vector3.up;
 	float speed = 10f;
 	float timer = 0f;
 	float lifespan = 0.75f;
 	float smokeTimer = 0f;
 	float smokeSpawnTime = 0f;
-	Vector3 normalScale;
 
 	public GameObject smoke; 
 	public AnimationCurve sizeCurve;
