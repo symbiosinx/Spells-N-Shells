@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
+	public Menu menu;
+
 	public Gun gun;
 	public Slider healthSlider;
 	public Slider staminaSlider;
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour {
 
 	public Transform crosshair;
 
+	float timer = 0f;
+
 	float Angle(Vector3 u, Vector3 v) {
 		return Mathf.Atan2(v.y - u.y, v.x - u.x);
 	}
@@ -40,6 +44,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
+
+		timer += Time.deltaTime;
 
 		healthSlider.value = health / maxHealth;
 		staminaSlider.value = stamina / maxStamina;
@@ -60,11 +66,15 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKey(KeyCode.Mouse0)) {
-			GetComponent<Rigidbody2D>().AddForce(-mouseDirection * 100f);
-			gun.Shoot(mouseDirection);
+			if (timer >= 0.01f) {
+				timer = 0f;
+				GetComponent<Rigidbody2D>().AddForce(-mouseDirection * 100f);
+				gun.Shoot(mouseDirection);
 
-			Instantiate(muzzleFlash, transform.position + mouseDirection * 0.3f + -Vector3.forward, Quaternion.identity);
-			cameraShake.Shoot(Random.insideUnitCircle.normalized);
+				Instantiate(muzzleFlash, transform.position + mouseDirection * 0.3f + -Vector3.forward, Quaternion.identity);
+				cameraShake.Shoot(Random.insideUnitCircle.normalized);
+
+			}
 
 		}
 	}
@@ -73,7 +83,7 @@ public class Player : MonoBehaviour {
 	public void Damage(float damage) {
 		health -= damage;
 		if (health <= 0) {
-			Destroy(gameObject);
+			menu.Die();
 		}
 		
 	}

@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	public GameObject enemy;
 	public Transform[] spawnPoints;
+	public Transform parent;
 
 	float timer;
 	float spawnTimer;
@@ -17,7 +18,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (spawnTimer > spawnRate) {
 			spawnTimer = 0f;
 			spawnRate = Mathf.Cos(timer * 0.2f) + 1.15f;
-			Instantiate(enemy, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+			Instantiate(enemy, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity, parent);
 		}
 	}
 
